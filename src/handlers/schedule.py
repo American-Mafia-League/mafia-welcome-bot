@@ -3,7 +3,7 @@ from telegram import Update
 from telegram.ext import CommandHandler, ContextTypes, filters
 
 from config import settings
-from utils import log
+import utils
 
 
 def create_handlers() -> list:
@@ -13,7 +13,7 @@ def create_handlers() -> list:
 
 async def schedule(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """When user uses the `schedule` command."""
-    log('schedule')
+    utils.log('schedule')
     if 'timestamp' in context.bot_data['schedule']:
         time_past = datetime.now() - datetime.fromisoformat(context.bot_data['schedule']['timestamp'])
         if time_past.total_seconds() < settings.SLOW_MODE:

@@ -7,7 +7,7 @@ from warnings import filterwarnings
 from config import settings
 from handlers import error
 from handlers import debug, info
-from handlers import schedule, welcome
+from handlers import feedback, schedule, welcome
 from utils import log
 
 
@@ -32,6 +32,11 @@ async def post_init(app: Application) -> None:
     app.bot_data.setdefault('clubs', {})
     app.bot_data.setdefault('players', {})
     app.bot_data.setdefault('schedule', {})
+    app.bot_data.setdefault('feedback', {})
+    for committee in settings.COMMITTEES:
+        app.bot_data['feedback'][committee.id] = {
+            'user-messages': {},
+            'message-user': {}}
 
 
 def add_handlers(app: Application) -> None:
@@ -42,5 +47,5 @@ def add_handlers(app: Application) -> None:
     for module in [debug, info]:
         app.add_handlers(module.create_handlers())
     # General chat handling.
-    for module in [schedule, welcome]:
+    for module in [feedback, schedule, welcome]:
         app.add_handlers(module.create_handlers())
