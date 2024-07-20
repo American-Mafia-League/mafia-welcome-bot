@@ -9,6 +9,7 @@ DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 # Notification message
 TIMEZONE = 'US/Eastern'
 ADMINS = [ '@PLACEHOLDER' ]
+COMMITTEES = []
 
 [prod]
 DEBUG = false
