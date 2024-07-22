@@ -16,10 +16,12 @@ State = Enum('State', [
 
 def create_handlers() -> list:
     """Creates handlers that process `feedback` command."""
+    committee_chats = [committee['id'] for committee in settings.COMMITTEES]
     return [ConversationHandler(
         entry_points=[
             CommandHandler('feedback', feedback, filters.ChatType.PRIVATE),
-            MessageHandler(filters.TEXT & ~filters.COMMAND & filters.REPLY, answer_feedback),
+            MessageHandler(filters.TEXT & ~filters.COMMAND & filters.REPLY & filters.Chat(committee_chats),
+                           answer_feedback),
         ],
         states={
             State.WAITING_FOR_CHAT: [CallbackQueryHandler(start_conversation)],
