@@ -63,7 +63,7 @@ async def start_conversation(update: Update, context: ContextTypes.DEFAULT_TYPE)
     message = (
         f'Вы на связи с {committee_to_text(context.user_data['feedback'])}. '
         f'Чтобы завершить сеанс, нажмите /end. '
-        f'Сеанс завершится автоматические по истечении суток.')
+        f'Сеанс завершится автоматически по истечении суток.')
     await update.callback_query.edit_message_text(message)
     return State.CONVERSATION
 
