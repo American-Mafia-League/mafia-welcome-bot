@@ -9,7 +9,7 @@ from utils import log
 
 def create_handlers() -> list:
     """Creates handlers that process admin's `info` command."""
-    return [CommandHandler('info', info, filters.User(username=settings.ADMINS))]
+    return [CommandHandler('info', info)]
 
 
 async def info(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
