@@ -24,6 +24,6 @@ DEBUG = true
 TOKEN = 'SECRET_PLACEHOLDER'
 CHANNEL_USERNAME = 'PLACEHOLDER'
 CHAT_ID = 'PLACEHOLDER'
-CONVERSATION_TIMEOUT = 10               # 10 seconds
+CONVERSATION_TIMEOUT = 20               # 20 seconds
 SLOW_MODE = 10                          # 10 seconds
 SCHEDULE_IMAGE = 'https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_(test_image).png'
