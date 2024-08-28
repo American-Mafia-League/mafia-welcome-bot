@@ -69,7 +69,7 @@ def user_status(update: Update) -> UserStatus:
     if update.chat_member.old_chat_member.status and update.chat_member.old_chat_member.status != ChatMemberStatus.LEFT:
         return UserStatus.OTHER
     if update.chat_member.new_chat_member.status == ChatMemberStatus.MEMBER:
-        return UserStatus.NEW_MEMBER        
+        return UserStatus.NEW_MEMBER
     return UserStatus.OTHER
 
 
@@ -90,7 +90,7 @@ async def left(update: Update, context: ContextTypes.DEFAULT_TYPE) -> State:
         await update.message.delete()
     return ConversationHandler.END
 
-    
+
 async def join(update: Update, context: ContextTypes.DEFAULT_TYPE) -> State:
     """When a user joins the chat (by message)."""
     utils.log('join')

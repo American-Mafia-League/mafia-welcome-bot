@@ -1,7 +1,5 @@
-from datetime import datetime
 from enum import Enum
-import logging 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, MessageOriginUser, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackQueryHandler, CommandHandler, ContextTypes, ConversationHandler, filters, MessageHandler, TypeHandler
 
 from config import settings
@@ -20,12 +18,12 @@ def create_handlers() -> list:
     return [ConversationHandler(
         entry_points=[
             CommandHandler('feedback', feedback, filters.ChatType.PRIVATE),
-            MessageHandler(filters.TEXT & ~filters.COMMAND & filters.REPLY & filters.Chat(committee_chats),
+            MessageHandler(~filters.COMMAND & filters.REPLY & filters.Chat(committee_chats),
                            answer_feedback),
         ],
         states={
             State.WAITING_FOR_CHAT: [CallbackQueryHandler(start_conversation)],
-            State.CONVERSATION: [MessageHandler(filters.TEXT & ~filters.COMMAND, handle_feedback)],
+            State.CONVERSATION: [MessageHandler(~filters.COMMAND, handle_feedback)],
             ConversationHandler.TIMEOUT: [TypeHandler(Update, timeout)],
         },
         fallbacks=[
@@ -82,7 +80,7 @@ async def handle_feedback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 
 async def answer_feedback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> State:
     """When someone in the chat replies to the feedback."""
-    utils.log('answer_feedback')    
+    utils.log('answer_feedback')
     forwarded_feedback = update.message.reply_to_message
     message_user_dict = context.bot_data['feedback'][update.effective_chat.id]['message-user']
     feedback_user_id = message_user_dict.get(forwarded_feedback.id, None)
@@ -100,7 +98,7 @@ async def timeout(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f'Если вы хотите продолжить общение, отправьте снова команду /feedback.')
     await user.send_message(message)
     message = f'Сеанс с {utils.mention(update.effective_user)} был автоматически завершён.'
-    await context.bot.send_message(context.user_data['feedback'], message)    
+    await context.bot.send_message(context.user_data['feedback'], message)
     clear_conversation_history(update, context)
     return ConversationHandler.END
 
@@ -112,7 +110,7 @@ async def end(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.effective_user.send_message(message)
     message = f'{utils.mention(update.effective_user)} завершил сеанс.'
     await context.bot.send_message(context.user_data['feedback'], message)
-    clear_conversation_history(update, context)    
+    clear_conversation_history(update, context)
     return ConversationHandler.END
 
 
