@@ -21,6 +21,8 @@ async def info(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     log(f'user id: {update.effective_user.id}', level=logging.INFO)
     log(f'user name: {update.effective_user.username}', level=logging.INFO)
     log(f'user full name: {update.effective_user.full_name}', level=logging.INFO)
+    log(f"user_data: {context.user_data['feedback']}", level=logging.INFO)
+    log(f"bot_data: {context.bot_data['feedback']}", level=logging.INFO)
     try:
         await update.message.delete()
     except BadRequest as e:
