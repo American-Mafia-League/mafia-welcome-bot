@@ -4,6 +4,7 @@ DEBUG = false
 # Pathes
 DB_PATH = 'data/db'
 LOG_PATH = 'logs/bot.log'
+SCHEDULE_IMAGE = 'assets/images/schedule.jpg'
 # Internal parameters
 DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 # Notification message
@@ -17,7 +18,6 @@ CHANNEL_USERNAME = 'PLACEHOLDER'
 CHAT_ID = 'PLACEHOLDER'
 CONVERSATION_TIMEOUT = 86400            # 24 hours (in seconds)
 SLOW_MODE = 3600                        # 1 hour (in seconds)
-SCHEDULE_IMAGE = 'PLACEHOLDER'
 
 [dev]
 DEBUG = true
@@ -26,4 +26,3 @@ CHANNEL_USERNAME = 'PLACEHOLDER'
 CHAT_ID = 'PLACEHOLDER'
 CONVERSATION_TIMEOUT = 20               # 20 seconds
 SLOW_MODE = 10                          # 10 seconds
-SCHEDULE_IMAGE = 'https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_(test_image).png'
