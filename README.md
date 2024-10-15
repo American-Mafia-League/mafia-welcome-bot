@@ -1,2 +1,2 @@
 # mafia-welcome-bot
-Telegram bot to welcome incoming users and ask them for a short introduction.
+Telegram bot to manage the AML players chat.
