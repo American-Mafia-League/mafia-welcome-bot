@@ -2,7 +2,6 @@ from datetime import datetime
 from functools import reduce
 import logging
 from telegram import User
-from telegram.helpers import mention_markdown
 
 from config import settings
 

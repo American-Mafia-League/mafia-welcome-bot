@@ -25,7 +25,7 @@ async def schedule(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if dow == 0:
         message = 'Сегодня у нас дружеский стёб 🌚'
     elif dow == 1:
-        message = 'Обновляем списки пострадавших после турнира и игры в онлайне 💻🎮'
+        message = 'Обновляем списки пострадавших после турнира и обсуждаем игры в онлайне 💻🎮'
     elif dow == 2:
         message = 'Да будет Срач!!! 🤬'
     elif dow == 3:
